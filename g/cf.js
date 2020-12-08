@@ -92,8 +92,12 @@ async function fetchHandler(e) {
     } else if (path == "" || path == "favicon.ico" || path == "1.png" ) {
         return fetch(ASSET_URL + path)
     } else {
-        console.log("@@")
-        return httpHandler(req, path)
+        if( path.substr(7) ==  "http:\/\/" || path.substr(8) ==  "https:\/\/" ){
+            return httpHandler(req, path)
+        }else {
+            return httpHandler(req, "https:\/\/"+path)
+        }
+
     }
 }
 
