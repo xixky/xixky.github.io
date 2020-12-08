@@ -91,7 +91,7 @@ async function fetchHandler(e) {
         // https://cdn.jsdelivr.net/gh/rclone/rclone@master/CONTRIBUTING.md
         const newUrl = path.replace(/(?<=com\/.+?\/.+?)\/(.+?\/)/, '@$1').replace(/^(?:https?:\/\/)?raw\.githubusercontent\.com/, 'https://cdn.jsdelivr.net/gh')
         return Response.redirect(newUrl, 302)
-    }else if (path.search("\/") === 0) {
+    }else if ( path != "" || path != "favicon.ico" || path != "1.png" || path != "index.html" ) {
         return httpHandler(req, path)
     } else {
         return fetch(ASSET_URL + path)
