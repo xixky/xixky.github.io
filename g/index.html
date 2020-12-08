@@ -11,30 +11,24 @@
             return false
         }
     </script>
-    <title>GitHub 文件加速</title>
+    <title>文件加速</title>
 </head>
 <body class="flex">
-<h1 style="margin-bottom: 50px"><img src="https://ae01.alicdn.com/kf/H2fc84859291347418b11091fe0e508b8v.png"
-                                     style="width: 1.5em;margin-right: .2em;vertical-align: bottom;">GitHub 文件加速</h1>
+<h1 style="margin-bottom: 50px"><img src="1.png"
+                                     style="width: 1.5em;margin-right: .2em;vertical-align: bottom;">文件加速</h1>
 <form action="./" method="get" style="padding-bottom: 40px" target="_blank" class="flex" onsubmit="toSubmit(event)">
     <label class="block" style="width: fit-content">
-        <!--<input class="block url" name="q" type="text" placeholder="键入Github文件链接" pattern="^((https|http):\/\/)?(github\.com\/.+?\/.+?\/(?:releases|archive|blob)|(raw\.githubusercontent\.com))\/.+$" required>-->
-        <input class="block url" name="q" type="text" placeholder="键入Github文件链接" required>
+        <!--<input class="block url" name="q" type="text" placeholder="输入文件链接" pattern="^((https|http):\/\/)?(github\.com\/.+?\/.+?\/(?:releases|archive|blob)|(raw\.githubusercontent\.com))\/.+$" required>-->
+        <input class="block url" name="q" type="text" placeholder="输入文件链接" required>
         <div class="bar"></div>
     </label>
     <input class="block btn" type="submit" value="下载">
-    <div class="tips"><p>GitHub文件链接带不带协议头都可以，支持release、archive以及文件，右键复制出来的链接都是符合标准的。</p>
-        <p>release、archive使用cf加速，文件会跳转至JsDelivr，注意，不支持项目文件夹</p>
-        <p>克隆仓库：git clone https://g.xaxka.top/https://github.com/rclone/rclone</p>
-    </div>
-    <div class="example">
-        <p>分支源码：https://github.com/hunshcn/project/archive/master.zip</p>
-        <p>release源码：https://github.com/hunshcn/project/archive/v0.1.0.tar.gz</p>
-        <p>release文件：https://github.com/hunshcn/project/releases/download/v0.1.0/example.zip</p>
-        <p>分支文件：https://github.com/hunshcn/project/blob/master/filename</p>
+    <div class="tips"><p>文件链接带不带协议头都可以，支持GitHub以及其他下载文件</p>
+        <p>克隆仓库：git clone https://g.xaxka.top/github.com/rclone/rclone</p>
+        <p>Linux下载文件：wget https://g.xaxka.top/downloads.rclone.org/v1.53.3/rclone-v1.53.3-linux-amd64.zip</p>
     </div>
 </form>
-<p style="position: sticky;top: calc(100% - 2.5em);">项目基于Cloudflare Workers，开源于GitHub <a style="color: #3294ea" href="https://github.com/hunshcn/gh-proxy">hunshcn/gh-proxy</a>
+<!--<p style="position: sticky;top: calc(100% - 2.5em);">项目基于Cloudflare Workers，开源于GitHub <a style="color: #3294ea" href="https://github.com/hunshcn/gh-proxy">hunshcn/gh-proxy</a>-->
 </p>
 </body>
 </html>
@@ -122,24 +116,18 @@
         margin: 30px 0;
     }
 
-    .tips, .example {
+    .tips  {
         color: #7b7b7b;
         position: relative;
         align-self: flex-start;
-        margin-left: 7.5em;
+        margin: 0px auto;
+
     }
 
     .tips > p:first-child::before {
         position: absolute;
         left: -3em;
         content: 'PS：';
-        color: #7b7b7b
-    }
-
-    .example > p:first-child::before {
-        position: absolute;
-        left: -7.5em;
-        content: '合法输入示例：';
         color: #7b7b7b
     }
 </style>
