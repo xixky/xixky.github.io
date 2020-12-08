@@ -23,11 +23,14 @@
         <div class="bar"></div>
     </label>
     <input class="block btn" type="submit" value="下载">
-    <div class="tips"><p>文件链接带不带协议头都可以，支持GitHub以及其他下载文件</p>
-        <p>克隆仓库：git clone https://g.xaxka.top/github.com/rclone/rclone</p>
-        <p>Linux下载文件：wget https://g.xaxka.top/downloads.rclone.org/v1.53.3/rclone-v1.53.3-linux-amd64.zip</p>
-        <p>如果要下载不支持https网站请加上http协议头,示例如下</p>
-        <p>Linux下载文件：wget https://g.xaxka.top/http://downloads.rclone.org/v1.53.3/rclone-v1.53.3-linux-amd64.zip</p>
+    <div class="tips">
+        <p>https协议的文件链接带不带协议头都可以，支持GitHub以及其他下载文件</p>
+        <p>输入示例：downloads.rclone.org/rclone-current-windows-amd64.zip</p>
+        <p>输入示例：http://downloads.rclone.org/rclone-current-windows-amd64.zip</p>
+    </div>
+    <div class="example">
+        <p>git克隆仓库：git clone https://g.xaxka.top/github.com/rclone/rclone</p>
+        <p>wget下载文件：wget https://g.xaxka.top/downloads.rclone.org/rclone-current-windows-amd64.zip</p>
     </div>
 </form>
 <!--<p style="position: sticky;top: calc(100% - 2.5em);">项目基于Cloudflare Workers，开源于GitHub <a style="color: #3294ea" href="https://github.com/hunshcn/gh-proxy">hunshcn/gh-proxy</a>-->
@@ -118,18 +121,24 @@
         margin: 30px 0;
     }
 
-    .tips  {
+    .tips, .example {
         color: #7b7b7b;
         position: relative;
         align-self: flex-start;
-        margin: 0px auto;
-
+        margin-left: 7.5em;
     }
 
     .tips > p:first-child::before {
         position: absolute;
         left: -3em;
         content: 'PS：';
+        color: #7b7b7b
+    }
+
+    .example > p:first-child::before {
+        position: absolute;
+        left: -5.5em;
+        content: '更多用法：';
         color: #7b7b7b
     }
 </style>
