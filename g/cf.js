@@ -87,14 +87,13 @@ async function fetchHandler(e) {
         const newUrl = path.replace(/^(?:https?:\/\/)?github\.com/, 'https://github.com.cnpmjs.org')
         return Response.redirect(newUrl, 302)
     } else if (path.search(exp4) === 0) {
-        //https://raw.githubusercontent.com/rclone/rclone/master/CONTRIBUTING.md
-        // https://cdn.jsdelivr.net/gh/rclone/rclone@master/CONTRIBUTING.md
         const newUrl = path.replace(/(?<=com\/.+?\/.+?)\/(.+?\/)/, '@$1').replace(/^(?:https?:\/\/)?raw\.githubusercontent\.com/, 'https://cdn.jsdelivr.net/gh')
         return Response.redirect(newUrl, 302)
-    }else if ( path != "" || path != "favicon.ico" || path != "1.png" || path != "index.html" ) {
-        return httpHandler(req, path)
-    } else {
+    } else if (path == "" || path == "favicon.ico" || path == "1.png" ) {
         return fetch(ASSET_URL + path)
+    } else {
+        console.log("@@")
+        return httpHandler(req, path)
     }
 }
 
