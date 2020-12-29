@@ -91,13 +91,16 @@ async function fetchHandler(e) {
         return Response.redirect(newUrl, 302)
     } else if (path == "" || path == "favicon.ico" || path == "1.png" ) {
         return fetch(ASSET_URL + path)
-    } else {
-        if( path.substr(7) ==  "http:\/\/" || path.substr(8) ==  "https:\/\/" ){
+    } else if (path.substring(0,8) ==  "https:\/\/" ) {
+        console.log("!"+req)
+        console.log("!"+path.substring(8))
+        return httpHandler(req, path)
+    }else {
+        if( path.substring(0,7) ==  "http:\/\/"  ){
             return httpHandler(req, path)
         }else {
             return httpHandler(req, "https:\/\/"+path)
         }
-
     }
 }
 
