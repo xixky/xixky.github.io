@@ -69,6 +69,7 @@ async function fetchHandler(e) {
     const exp2 = /^(?:https?:\/\/)?github\.com\/.+?\/.+?\/(?:blob)\/.*$/i
     const exp3 = /^(?:https?:\/\/)?github\.com\/.+?\/.+?\/(?:info|git-).*$/i
     const exp4 = /^(?:https?:\/\/)?raw\.githubusercontent\.com\/.+?\/.+?\/.+?\/.+$/i
+    const exp5 = /^(?:https?:\/\/)?.+?.sharepoint\.com/i
     if (path.search(exp1) === 0 || !Config.cnpmjs && (path.search(exp3) === 0 || path.search(exp4) === 0)) {
         return httpHandler(req, path)
     } else if (path.search(exp2) === 0) {
@@ -89,17 +90,28 @@ async function fetchHandler(e) {
     } else if (path.search(exp4) === 0) {
         const newUrl = path.replace(/(?<=com\/.+?\/.+?)\/(.+?\/)/, '@$1').replace(/^(?:https?:\/\/)?raw\.githubusercontent\.com/, 'https://cdn.jsdelivr.net/gh')
         return Response.redirect(newUrl, 302)
-    } else if (path == "" || path == "favicon.ico" || path == "1.png" ) {
-        return fetch(ASSET_URL + path)
-    } else if (path.substring(0,8) ==  "https:\/\/" ) {
-        console.log("!"+req)
-        console.log("!"+path.substring(8))
-        return httpHandler(req, path)
-    }else {
-        if( path.substring(0,7) ==  "http:\/\/"  ){
-            return httpHandler(req, path)
+    } else if (path.search(exp5) === 0) {
+        let newUrl = path.replace(/\/:.:\/./, '')
+            .replace(/(.*)\//, '$1/_layouts/15/download.aspx?share=')
+        if( newUrl.match(/\?e=.+$/) != null){
+            newUrl = newUrl.match(/.*\?+.*\?+/)[0]
+            newUrl = newUrl.substr(0,newUrl.length - 1);
+        }
+        // 是否有https头
+        if (path.substring(0, 8) == "https:\/\/"){
+            return httpHandler(req, newUrl)
         }else {
-            return httpHandler(req, "https:\/\/"+path)
+            return httpHandler(req, "https:\/\/" + newUrl)
+        }
+    } else if (path == "" || path == "favicon.ico" || path == "1.png") {
+        return fetch(ASSET_URL + path)
+    } else if (path.substring(0, 8) == "https:\/\/") {
+        return httpHandler(req, path)
+    } else {
+        if (path.substring(0, 7) == "http:\/\/") {
+            return httpHandler(req, path)
+        } else {
+            return httpHandler(req, "https:\/\/" + path)
         }
     }
 }
@@ -113,9 +125,10 @@ function httpHandler(req, pathname) {
     const reqHdrRaw = req.headers
 
     // preflight
-    if (req.method === 'OPTIONS' &&
-        reqHdrRaw.has('access-control-request-headers')
-    ) {
+    if (req.method === 'OPTIONS' && reqHdrRaw.has('access-control-request-headers')
+
+    )
+    {
         return new Response(null, PREFLIGHT_INIT)
     }
 
