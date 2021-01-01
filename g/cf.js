@@ -70,27 +70,11 @@ async function fetchHandler(e) {
     const exp3 = /^(?:https?:\/\/)?github\.com\/.+?\/.+?\/(?:info|git-).*$/i
     const exp4 = /^(?:https?:\/\/)?raw\.githubusercontent\.com\/.+?\/.+?\/.+?\/.+$/i
     const exp5 = /^(?:https?:\/\/)?.+?.sharepoint\.com/i
-    if (path.search(exp1) === 0 || !Config.cnpmjs && (path.search(exp3) === 0 || path.search(exp4) === 0)) {
-        return httpHandler(req, path)
-    } else if (path.search(exp2) === 0) {
-        //文件会跳转至JsDelivr
-        if (Config.jsdelivr) {
-            // 使用jsDelivr镜像
-            const newUrl = path.replace('/blob/', '@').replace(/^(?:https?:\/\/)?github\.com/, 'https://cdn.jsdelivr.net/gh')
-            return Response.redirect(newUrl, 302)
-        } else {
-            //走cf直连
-            path = path.replace('/blob/', '/raw/')
-            return httpHandler(req, path)
-        }
-    } else if (path.search(exp3) === 0) {
-        // 使用git clone
-        const newUrl = path.replace(/^(?:https?:\/\/)?github\.com/, 'https://github.com.cnpmjs.org')
-        return Response.redirect(newUrl, 302)
-    } else if (path.search(exp4) === 0) {
-        const newUrl = path.replace(/(?<=com\/.+?\/.+?)\/(.+?\/)/, '@$1').replace(/^(?:https?:\/\/)?raw\.githubusercontent\.com/, 'https://cdn.jsdelivr.net/gh')
-        return Response.redirect(newUrl, 302)
-    } else if (path.search(exp5) === 0) {
+
+    if (path == "" || path == "favicon.ico") {
+        return fetch(ASSET_URL + path)
+    }
+    else if (path.search(exp5) === 0) {
         let newUrl = path.replace(/\/:.:\/./, '')
             .replace(/(.*)\//, '$1/_layouts/15/download.aspx?share=')
         if( newUrl.match(/\?e=.+$/) != null){
@@ -103,11 +87,35 @@ async function fetchHandler(e) {
         }else {
             return httpHandler(req, "https:\/\/" + newUrl)
         }
-    } else if (path == "" || path == "favicon.ico" || path == "1.png") {
-        return fetch(ASSET_URL + path)
-    } else if (path.substring(0, 8) == "https:\/\/") {
+    }
+    else if (path.search(exp1) === 0 || !Config.cnpmjs && (path.search(exp3) === 0 || path.search(exp4) === 0)) {
         return httpHandler(req, path)
-    } else {
+    }
+    else if (path.search(exp2) === 0) {
+        //文件会跳转至JsDelivr
+        if (Config.jsdelivr) {
+            // 使用jsDelivr镜像
+            const newUrl = path.replace('/blob/', '@').replace(/^(?:https?:\/\/)?github\.com/, 'https://cdn.jsdelivr.net/gh')
+            return Response.redirect(newUrl, 302)
+        } else {
+            //走cf直连
+            path = path.replace('/blob/', '/raw/')
+            return httpHandler(req, path)
+        }
+    }
+    else if (path.search(exp3) === 0) {
+        // 使用git clone
+        const newUrl = path.replace(/^(?:https?:\/\/)?github\.com/, 'https://github.com.cnpmjs.org')
+        return Response.redirect(newUrl, 302)
+    }
+    else if (path.search(exp4) === 0) {
+        const newUrl = path.replace(/(?<=com\/.+?\/.+?)\/(.+?\/)/, '@$1').replace(/^(?:https?:\/\/)?raw\.githubusercontent\.com/, 'https://cdn.jsdelivr.net/gh')
+        return Response.redirect(newUrl, 302)
+    }
+    else if (path.substring(0, 8) == "https:\/\/") {
+        return httpHandler(req, path)
+    }
+    else {
         if (path.substring(0, 7) == "http:\/\/") {
             return httpHandler(req, path)
         } else {
