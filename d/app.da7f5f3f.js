@@ -143,7 +143,7 @@
         return s.d(t, "a", t), t
     }, s.o = function (e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, s.p = "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/", s.oe = function (e) {
+    }, s.p = "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/", s.oe = function (e) {
         throw console.error(e), e
     };
     var u = window["webpackJsonp"] = window["webpackJsonp"] || [], d = u.push.bind(u);
@@ -695,18 +695,18 @@
                 NODE_ENV: "production",
                 VUE_APP_I18N_LOCALE: "zh-chs",
                 VUE_APP_I18N_FALLBACK_LOCALE: "en",
-                VUE_APP_CDN_PATH: "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/",
+                VUE_APP_CDN_PATH: "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/",
                 VUE_APP_VERSION: "2.0.8",
                 VUE_APP_G2INDEX_VERSION: "1.1.2",
-                BASE_URL: "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/"
+                BASE_URL: "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/"
             }).VUE_APP_API ? Object({
                 NODE_ENV: "production",
                 VUE_APP_I18N_LOCALE: "zh-chs",
                 VUE_APP_I18N_FALLBACK_LOCALE: "en",
-                VUE_APP_CDN_PATH: "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/",
+                VUE_APP_CDN_PATH: "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/",
                 VUE_APP_VERSION: "2.0.8",
                 VUE_APP_G2INDEX_VERSION: "1.1.2",
-                BASE_URL: "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/"
+                BASE_URL: "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/"
             }).VUE_APP_API : ""
         });
         c.interceptors.request.use((function (e) {
@@ -906,10 +906,10 @@
                     NODE_ENV: "production",
                     VUE_APP_I18N_LOCALE: "zh-chs",
                     VUE_APP_I18N_FALLBACK_LOCALE: "en",
-                    VUE_APP_CDN_PATH: "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/",
+                    VUE_APP_CDN_PATH: "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/",
                     VUE_APP_VERSION: "2.0.8",
                     VUE_APP_G2INDEX_VERSION: "1.1.2",
-                    BASE_URL: "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/"
+                    BASE_URL: "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/"
                 }).VUE_APP_TITLE || "GoIndex";
                 window.document.title = "".concat(t).concat(e ? " | ".concat(e) : "")
             }, open: function (e) {
@@ -975,7 +975,7 @@
         "use strict";
 
         function n(e) {
-            var t = "https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou@v2.0.8/dist/";
+            var t = "https://cdn.jsdelivr.net/gh/xixky/goindex-theme-acrou/dist/";
             return t + e
         }
 
